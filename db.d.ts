@@ -12,7 +12,10 @@ export interface User_Orgs {
   id: string
   name: string
   picture: string
-  owner_id: User_List["id"]
+  usage: {
+    token_used: number
+    available_credits: number
+  }
   created_at: string | Date
   updated_at: string | Date
 }
@@ -21,22 +24,6 @@ export interface User_Org_Access {
   user_id: User_List["id"]
   ord_id: User_Orgs["id"]
   type: "agent" | "admin" | "owner"
-}
-
-export interface User_Org_Usage {
-  id: string
-  token_used: number
-  credits: number
-  user_id: User_List["id"]
-}
-
-export interface Assistant_Intents {
-  id: string
-  org_id: User_Orgs["id"]
-  type: "faq" | "website" | "document"
-  data: Record<string, any>
-  created_at: string | Date
-  updated_at: string | Date
 }
 
 export interface Assistant_KnowledgeBase {
@@ -48,12 +35,21 @@ export interface Assistant_KnowledgeBase {
   updated_at: string | Date
 }
 
+export interface Assistant_Intents {
+  id: string
+  kb_id: Assistant_KnowledgeBase["id"]
+  action: Record<string, any>
+  created_at: string | Date
+  updated_at: string | Date
+}
+
 export interface Assistant_Triggers {
   id: string
-  knowledge_base: Assistant_KnowledgeBase["id"]
+  kb_id: Assistant_KnowledgeBase["id"]
+  intent_id: Assistant_Intents["id"]
   text: string
   vector: number[]
-  dimension: number
+  embbeding_model: string
 }
 
 export interface Support_Tickets {
@@ -68,7 +64,7 @@ export interface Support_Tickets {
 
 export interface Support_Messages {
   id: string
-  org_id: User_Orgs["id"]
+  support_id: Support_Tickets["id"]
   agent_id: User_List["id"]
   customer_id: string
   type: "instagram" | "facebook" | "whatsapp" | "web-chat" | "email"
@@ -78,7 +74,6 @@ export interface Support_Messages {
 
 export interface Support_Customers {
   id: string
-  ref: string
   data: Record<string, any>
   blacklisted: Boolean
   cooldown_till: string | Date
@@ -90,7 +85,6 @@ export interface DBTables {
   "user.list": User_List
   "user.orgs": User_Orgs
   "user.org_access": User_Org_Access
-  "user.org_usage": User_Org_Usage
 
   // Assistant
   "assistants.intents": Assistant_Intents
