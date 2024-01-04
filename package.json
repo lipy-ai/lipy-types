@@ -1,7 +1,7 @@
 {
-  "name": "shared-types",
+  "name": "lipy-types",
   "version": "1.0.0",
-  "description": "TypeScript types for my-awesome-library",
+  "description": "TypeScript types for lipy-ai",
   "main": "index.d.ts",
   "types": "index.d.ts",
   "scripts": {
