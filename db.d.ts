@@ -1,6 +1,16 @@
 /* eslint-disable no-use-before-define */
 
-export interface User_List {
+import {
+  Channels,
+  KnowledgeBaseType,
+  MessageData,
+  MessageSender,
+  OrgUsage,
+  TicketActivity,
+  UserType,
+} from "./common"
+
+export interface UserListTable {
   id: string
   email: string
   country: string
@@ -8,91 +18,93 @@ export interface User_List {
   updated_at: string | Date
 }
 
-export interface User_Orgs {
+export interface OrgAccessTable {
+  user_id: UserListTable["id"]
+  ord_id: OrgListTable["id"]
+  type: UserType
+}
+
+export interface OrgListTable {
   id: string
   name: string
   picture: string
-  usage: {
-    token_used: number
-    available_credits: number
-  }
+  usage: OrgUsage
   created_at: string | Date
   updated_at: string | Date
 }
 
-export interface User_Org_Access {
-  user_id: User_List["id"]
-  ord_id: User_Orgs["id"]
-  type: "agent" | "admin" | "owner"
-}
-
-export interface Assistant_KnowledgeBase {
+export interface OrgTicketsTable {
   id: string
-  org_id: User_Orgs["id"]
-  type: "faq" | "website" | "document"
-  data: Record<string, any>
-  created_at: string | Date
-  updated_at: string | Date
-}
-
-export interface Assistant_Intents {
-  id: string
-  kb_id: Assistant_KnowledgeBase["id"]
-  action: Record<string, any>
-  created_at: string | Date
-  updated_at: string | Date
-}
-
-export interface Assistant_Triggers {
-  id: string
-  kb_id: Assistant_KnowledgeBase["id"]
-  intent_id: Assistant_Intents["id"]
-  text: string
-  vector: number[]
-  embbeding_model: string
-}
-
-export interface Support_Tickets {
-  id: string
-  org_id: User_Orgs["id"]
-  closed_by: User_List["id"]
+  org_id: OrgListTable["id"]
+  platform: Channels
+  activity: TicketActivity
+  closed_by: UserListTable["id"]
   closed_at: string | Date
   created_at: string | Date
   updated_at: string | Date
   archived_at: string | Date
 }
 
-export interface Support_Messages {
+export interface OrgMessagesTable {
   id: string
-  support_id: Support_Tickets["id"]
-  agent_id: User_List["id"]
-  customer_id: string
-  type: "instagram" | "facebook" | "whatsapp" | "web-chat" | "email"
-  data: Record<string, any>
+  ticket_id: OrgTicketsTable["id"]
+  sender_id: string
+  sender_type: MessageSender
+  data: MessageData
   sent_at: string | Date
 }
 
-export interface Support_Customers {
+export interface OrgCustomersTable {
   id: string
   data: Record<string, any>
-  blacklisted: Boolean
-  cooldown_till: string | Date
-  platform: "web" | "facebook" | "instagram" | "email" | "whatsapp"
+  blacklisted: boolean
+  cooldown: boolean
+  platform: MessageChannel
+  created_at: string | Date
+  updated_at: string | Date
+}
+
+export interface AssistantKnowledgeBaseTable {
+  id: string
+  org_id: OrgListTable["id"]
+  type: KnowledgeBaseType
+  data: Record<string, any>
+  created_at: string | Date
+  updated_at: string | Date
+}
+
+export interface AssistantIntentsTable {
+  id: string
+  kb_id: AssistantKnowledgeBaseTable["id"]
+  action: Record<string, any>
+  created_at: string | Date
+  updated_at: string | Date
+}
+
+export interface AssistantTriggersTable {
+  id: string
+  kb_id: AssistantKnowledgeBaseTable["id"]
+  intent_id: AssistantIntentsTable["id"]
+  text: string
+  vector: number[]
+  embbeding_model: string
+  created_at: string | Date
+  updated_at: string | Date
 }
 
 export interface DBTables {
   //User
-  "user.list": User_List
-  "user.orgs": User_Orgs
-  "user.org_access": User_Org_Access
+  "user.list": UserListTable
+
+  //Org
+  "org.list": OrgListTable
+  "org.access": OrgAccessTable
+  "org.tickets": OrgTicketsTable
+  "org.messages": OrgMessagesTable
+  "org.customers": OrgCustomersTable
 
   // Assistant
-  "assistants.intents": Assistant_Intents
-  "assistants.knowledge_base": Assistant_KnowledgeBase
-  "assistants.triggers": Assistant_Triggers
-
-  // Support
-  "support.tickets": Support_Tickets
-  "support.messages": Support_Messages
-  "support.customers": Support_Customers
+  "assistants.intents": AssistantIntentsTable
+  "assistants.knowledge_base": AssistantKnowledgeBaseTable
+  "assistants.triggers": AssistantTriggersTable
 }
