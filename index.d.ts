@@ -6,8 +6,6 @@ declare module "knex/types/tables" {
   export interface Tables extends DBTables {}
 }
 
-declare module "lipy-ai" {
-  export interface Test {
-    id: string
-  }
+export interface Lipy_Test {
+  id: string
 }
