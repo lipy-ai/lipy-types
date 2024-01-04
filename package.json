@@ -1,5 +1,5 @@
 {
-  "name": "@types/lipy",
+  "name": "@types/lipy-ai",
   "version": "1.0.0",
   "description": "TypeScript types for lipy-ai",
   "main": "index.d.ts",
