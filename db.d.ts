@@ -8,19 +8,19 @@ import {
   OrgUsage,
   TicketActivity,
   UserType,
-} from "./common"
+} from './common'
 
 export interface UserListTable {
   id: string
   email: string
   country: string
-  created_at: string | Date
-  updated_at: string | Date
+  created_at?: string | Date
+  updated_at?: string | Date
 }
 
 export interface OrgAccessTable {
-  user_id: UserListTable["id"]
-  ord_id: OrgListTable["id"]
+  user_id: UserListTable['id']
+  ord_id: OrgListTable['id']
   type: UserType
 }
 
@@ -29,25 +29,25 @@ export interface OrgListTable {
   name: string
   picture: string
   usage: OrgUsage
-  created_at: string | Date
-  updated_at: string | Date
+  created_at?: string | Date
+  updated_at?: string | Date
 }
 
 export interface OrgTicketsTable {
   id: string
-  org_id: OrgListTable["id"]
+  org_id: OrgListTable['id']
   platform: Channels
   activity: TicketActivity
-  closed_by: UserListTable["id"]
+  closed_by: UserListTable['id']
   closed_at: string | Date
-  created_at: string | Date
-  updated_at: string | Date
+  created_at?: string | Date
+  updated_at?: string | Date
   archived_at: string | Date
 }
 
 export interface OrgMessagesTable {
   id: string
-  ticket_id: OrgTicketsTable["id"]
+  ticket_id: OrgTicketsTable['id']
   sender_id: string
   sender_type: MessageSender
   data: MessageData
@@ -60,51 +60,51 @@ export interface OrgCustomersTable {
   blacklisted: boolean
   cooldown: boolean
   platform: MessageChannel
-  created_at: string | Date
-  updated_at: string | Date
+  created_at?: string | Date
+  updated_at?: string | Date
 }
 
 export interface AssistantKnowledgeBaseTable {
   id: string
-  org_id: OrgListTable["id"]
+  org_id: OrgListTable['id']
   type: KnowledgeBaseType
   data: Record<string, any>
-  created_at: string | Date
-  updated_at: string | Date
+  created_at?: string | Date
+  updated_at?: string | Date
 }
 
 export interface AssistantIntentsTable {
   id: string
-  kb_id: AssistantKnowledgeBaseTable["id"]
+  kb_id: AssistantKnowledgeBaseTable['id']
   action: Record<string, any>
-  created_at: string | Date
-  updated_at: string | Date
+  created_at?: string | Date
+  updated_at?: string | Date
 }
 
 export interface AssistantTriggersTable {
   id: string
-  kb_id: AssistantKnowledgeBaseTable["id"]
-  intent_id: AssistantIntentsTable["id"]
+  kb_id: AssistantKnowledgeBaseTable['id']
+  intent_id: AssistantIntentsTable['id']
   text: string
   vector: number[]
   embbeding_model: string
-  created_at: string | Date
-  updated_at: string | Date
+  created_at?: string | Date
+  updated_at?: string | Date
 }
 
 export interface DBTables {
   //User
-  "user.list": UserListTable
+  'users.list': UserListTable
 
   //Org
-  "org.list": OrgListTable
-  "org.access": OrgAccessTable
-  "org.tickets": OrgTicketsTable
-  "org.messages": OrgMessagesTable
-  "org.customers": OrgCustomersTable
+  'orgs.list': OrgListTable
+  'orgs.access': OrgAccessTable
+  'orgs.tickets': OrgTicketsTable
+  'orgs.messages': OrgMessagesTable
+  'orgs.customers': OrgCustomersTable
 
   // Assistant
-  "assistants.intents": AssistantIntentsTable
-  "assistants.knowledge_base": AssistantKnowledgeBaseTable
-  "assistants.triggers": AssistantTriggersTable
+  'assistants.intents': AssistantIntentsTable
+  'assistants.knowledge_base': AssistantKnowledgeBaseTable
+  'assistants.triggers': AssistantTriggersTable
 }
