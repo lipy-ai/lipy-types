@@ -29,6 +29,7 @@ export interface OrgListTable {
   name: string
   picture: string
   usage: OrgUsage
+  owner_id: string
   created_at?: string | Date
   updated_at?: string | Date
 }
