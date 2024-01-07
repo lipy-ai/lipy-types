@@ -20,7 +20,7 @@ export interface UserListTable {
 
 export interface OrgAccessTable {
   user_id: UserListTable['id']
-  ord_id: OrgListTable['id']
+  org_id: OrgListTable['id']
   type: UserType
 }
 
