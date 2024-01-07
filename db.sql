@@ -16,6 +16,7 @@ CREATE TABLE orgs.list (
   name text NOT NULL,
   picture text NOT NULL,
   usage JSONB NOT NULL,
+  owner_id text NOT NULL REFERENCES users.list(id),
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now()
 );
@@ -23,7 +24,7 @@ CREATE TABLE orgs.list (
 CREATE TABLE orgs.access (
   user_id text REFERENCES users.list(id),
   org_id text REFERENCES orgs.list(id),
-  type text CHECK(type IN ('agent', 'admin', 'owner')),
+  type text CHECK(type IN ('agent', 'admin')),
   PRIMARY KEY (user_id, org_id)
 );
 
