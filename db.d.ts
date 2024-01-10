@@ -71,7 +71,7 @@ export interface OrgCustomersTable {
     }
   }
   blacklisted: boolean
-  channel: MessageChannel
+  channel: Channels
   created_at?: string | Date
   updated_at?: string | Date
 }
