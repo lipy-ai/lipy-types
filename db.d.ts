@@ -38,7 +38,7 @@ export interface OrgTicketsTable {
   id: string
   org_id: OrgListTable["id"]
   assignee: UserListTable["id"]
-  label: string[]
+  tags: string[]
   status: "open" | "closed"
   star: boolean
   channel: Channels
