@@ -59,10 +59,19 @@ export interface OrgMessagesTable {
 
 export interface OrgCustomersTable {
   id: string
-  data: Record<string, any>
+  ref: string
+  name: string
+  email: string
+  phone: string
+  data: {
+    address: {
+      city: string
+      country: string
+      pincode: string
+    }
+  }
   blacklisted: boolean
-  cooldown: boolean
-  platform: MessageChannel
+  channel: MessageChannel
   created_at?: string | Date
   updated_at?: string | Date
 }
