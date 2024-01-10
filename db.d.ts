@@ -42,7 +42,7 @@ export interface OrgTicketsTable {
   status: "open" | "closed"
   star: boolean
   channel: Channels
-  activity: TicketActivity
+  activity: TicketActivity[]
   created_at?: string | Date
   updated_at?: string | Date
   archived_at: string | Date
