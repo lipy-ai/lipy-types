@@ -34,6 +34,13 @@ export interface OrgListTable {
   updated_at?: string | Date
 }
 
+export interface OrgAPIKeysTable {
+  id: string
+  org_id: OrgListTable["id"]
+  created_at?: string | Date
+  expires_at?: string | Date
+}
+
 export interface OrgTicketsTable {
   id: string
   org_id: OrgListTable["id"]
