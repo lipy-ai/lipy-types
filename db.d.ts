@@ -38,6 +38,7 @@ export interface OrgTicketsTable {
   id: string
   org_id: OrgListTable["id"]
   assignee: UserListTable["id"]
+  customer: OrgCustomersTable["id"]
   tags: string[]
   status: "open" | "closed"
   star: boolean
