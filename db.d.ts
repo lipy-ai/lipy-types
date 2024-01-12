@@ -35,10 +35,10 @@ export interface OrgListTable {
 }
 
 export interface OrgAPIKeysTable {
-  id: string
   org_id: OrgListTable["id"]
-  created_at?: string | Date
-  expires_at?: string | Date
+  webchat?: string
+  openai?: string
+  mistral?: string
 }
 
 export interface OrgTicketsTable {
