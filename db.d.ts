@@ -122,6 +122,7 @@ export interface DBTables {
   "orgs.tickets": OrgTicketsTable
   "orgs.messages": OrgMessagesTable
   "orgs.customers": OrgCustomersTable
+  "orgs.api_keys": OrgAPIKeysTable
 
   // Assistant
   "assistants.intents": AssistantIntentsTable
