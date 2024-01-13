@@ -29,7 +29,7 @@ export interface OrgInvitationTable {
   org_id: OrgListTable['id']
   user_id: UserListTable['id']
   invited_by: UserListTable['id']
-  message_id: string
+  message_id: string | null
   status: InvitationStatus
   type: UserType
   invited_at: string | Date
