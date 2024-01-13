@@ -1,5 +1,10 @@
 export type UserType = 'agent' | 'admin'
-
+export type InvitationStatus =
+  | 'pending'
+  | 'accepted'
+  | 'rejected'
+  | 'cancelled'
+  | 'expired'
 export type Channels =
   | 'instagram'
   | 'facebook'

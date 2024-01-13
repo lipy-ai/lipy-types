@@ -2,13 +2,14 @@
 
 import {
   Channels,
+  InvitationStatus,
   KnowledgeBaseType,
   MessageData,
   MessageSender,
   OrgUsage,
   TicketActivity,
   UserType,
-} from "./common"
+} from './common'
 
 export interface UserListTable {
   id: string
@@ -19,9 +20,15 @@ export interface UserListTable {
 }
 
 export interface OrgAccessTable {
-  user_id: UserListTable["id"]
-  org_id: OrgListTable["id"]
+  id: string
+  org_id: OrgListTable['id']
+  user_id: UserListTable['id']
+  invited_by: UserListTable['id']
+  message_id: string
+  status: InvitationStatus
   type: UserType
+  invited_at: string | Date
+  updates_at?: string | Date
 }
 
 export interface OrgListTable {
@@ -35,7 +42,7 @@ export interface OrgListTable {
 }
 
 export interface OrgAPIKeysTable {
-  org_id: OrgListTable["id"]
+  org_id: OrgListTable['id']
   webchat?: string
   openai?: string
   mistral?: string
@@ -43,11 +50,11 @@ export interface OrgAPIKeysTable {
 
 export interface OrgTicketsTable {
   id: string
-  org_id: OrgListTable["id"]
-  assignee: UserListTable["id"]
-  customer: OrgCustomersTable["id"]
+  org_id: OrgListTable['id']
+  assignee: UserListTable['id']
+  customer: OrgCustomersTable['id']
   tags: string[]
-  status: "open" | "closed"
+  status: 'open' | 'closed'
   star: boolean
   channel: Channels
   activity: TicketActivity[]
@@ -58,7 +65,7 @@ export interface OrgTicketsTable {
 
 export interface OrgMessagesTable {
   id: string
-  ticket_id: OrgTicketsTable["id"]
+  ticket_id: OrgTicketsTable['id']
   sender_id: string
   sender_type: MessageSender
   data: MessageData
@@ -67,7 +74,7 @@ export interface OrgMessagesTable {
 
 export interface OrgCustomersTable {
   id: string
-  org_id: OrgListTable["id"]
+  org_id: OrgListTable['id']
   name: string | null
   email: string | null
   phone: string | null
@@ -88,7 +95,7 @@ export interface OrgCustomersTable {
 
 export interface AssistantKnowledgeBaseTable {
   id: string
-  org_id: OrgListTable["id"]
+  org_id: OrgListTable['id']
   type: KnowledgeBaseType
   data: Record<string, any>
   created_at?: string | Date
@@ -97,7 +104,7 @@ export interface AssistantKnowledgeBaseTable {
 
 export interface AssistantIntentsTable {
   id: string
-  kb_id: AssistantKnowledgeBaseTable["id"]
+  kb_id: AssistantKnowledgeBaseTable['id']
   action: Record<string, any>
   created_at?: string | Date
   updated_at?: string | Date
@@ -105,8 +112,8 @@ export interface AssistantIntentsTable {
 
 export interface AssistantTriggersTable {
   id: string
-  kb_id: AssistantKnowledgeBaseTable["id"]
-  intent_id: AssistantIntentsTable["id"]
+  kb_id: AssistantKnowledgeBaseTable['id']
+  intent_id: AssistantIntentsTable['id']
   text: string
   vector: number[]
   embbeding_model: string
@@ -116,18 +123,18 @@ export interface AssistantTriggersTable {
 
 export interface DBTables {
   //User
-  "users.list": UserListTable
+  'users.list': UserListTable
 
   //Org
-  "orgs.list": OrgListTable
-  "orgs.access": OrgAccessTable
-  "orgs.tickets": OrgTicketsTable
-  "orgs.messages": OrgMessagesTable
-  "orgs.customers": OrgCustomersTable
-  "orgs.api_keys": OrgAPIKeysTable
+  'orgs.list': OrgListTable
+  'orgs.access': OrgAccessTable
+  'orgs.tickets': OrgTicketsTable
+  'orgs.messages': OrgMessagesTable
+  'orgs.customers': OrgCustomersTable
+  'orgs.api_keys': OrgAPIKeysTable
 
   // Assistant
-  "assistants.intents": AssistantIntentsTable
-  "assistants.knowledge_base": AssistantKnowledgeBaseTable
-  "assistants.triggers": AssistantTriggersTable
+  'assistants.intents': AssistantIntentsTable
+  'assistants.knowledge_base': AssistantKnowledgeBaseTable
+  'assistants.triggers': AssistantTriggersTable
 }
