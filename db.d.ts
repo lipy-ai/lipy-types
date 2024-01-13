@@ -20,6 +20,11 @@ export interface UserListTable {
 }
 
 export interface OrgAccessTable {
+  org_id: OrgListTable['id']
+  user_id: UserListTable['id']
+  type: UserType
+}
+export interface OrgInvitationTable {
   id: string
   org_id: OrgListTable['id']
   user_id: UserListTable['id']
@@ -128,6 +133,7 @@ export interface DBTables {
   //Org
   'orgs.list': OrgListTable
   'orgs.access': OrgAccessTable
+  'orgs.invitations': OrgInvitationTable
   'orgs.tickets': OrgTicketsTable
   'orgs.messages': OrgMessagesTable
   'orgs.customers': OrgCustomersTable
