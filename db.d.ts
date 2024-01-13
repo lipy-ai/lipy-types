@@ -33,7 +33,7 @@ export interface OrgInvitationTable {
   status: InvitationStatus
   type: UserType
   invited_at: string | Date
-  updates_at?: string | Date
+  updated_at?: string | Date
 }
 
 export interface OrgListTable {
