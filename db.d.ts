@@ -67,11 +67,13 @@ export interface OrgMessagesTable {
 
 export interface OrgCustomersTable {
   id: string
-  ref: string
-  name: string
-  email: string
-  phone: string
-  data: {
+  org_id: OrgListTable["id"]
+  name: string | null
+  email: string | null
+  phone: string | null
+  ip: string
+  user_agent: string
+  data?: {
     address: {
       city: string
       country: string
