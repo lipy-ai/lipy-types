@@ -13,6 +13,7 @@ import {
 
 export interface UserListTable {
   id: string
+  name: string
   email: string
   country: string
   created_at?: string | Date
