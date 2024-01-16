@@ -15,7 +15,8 @@ export interface UserListTable {
   id: string
   name: string
   email: string
-  country: string
+  country?: string
+  picture?: string
   created_at?: string | Date
   updated_at?: string | Date
 }
@@ -84,6 +85,7 @@ export interface OrgCustomersTable {
   name: string | null
   email: string | null
   phone: string | null
+  picture?: string
   ip: string
   user_agent: string
   data?: {
