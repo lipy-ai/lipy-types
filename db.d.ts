@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-
+import { FaqData } from "./kb"
 import {
   Channels,
   InvitationStatus,
@@ -100,12 +100,13 @@ export interface OrgCustomersTable {
   created_at?: string | Date
   updated_at?: string | Date
 }
-
-export interface AssistantKnowledgeBaseTable {
+export interface AssistantKnowledgeBaseTable<
+  Type extends KnowledgeBaseType = KnowledgeBaseType
+> {
   id: string
   org_id: OrgListTable["id"]
-  type: KnowledgeBaseType
-  data: Record<string, any>
+  type: Type
+  data: Type extends "faq" ? FaqData : Record<string, any>
   created_at?: string | Date
   updated_at?: string | Date
 }
