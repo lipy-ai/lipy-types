@@ -15,8 +15,14 @@ export interface UserListTable {
   id: string
   name: string
   email: string
+  phone_number?: string
   country?: string
   picture?: string
+  notifications?: {
+    messages: "all" | "direct" | "none"
+    communication_emails: boolean
+    marketing_email: boolean
+  }
   created_at?: string | Date
   updated_at?: string | Date
 }
