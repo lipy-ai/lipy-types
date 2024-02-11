@@ -168,6 +168,7 @@ export interface DBTables {
   "orgs.api_keys": OrgAPIKeysTable
 
   // Assistant
+  "assistants.list": AssistantListTable
   "assistants.intents": AssistantIntentsTable
   "assistants.knowledge_base": AssistantKnowledgeBaseTable
   "assistants.triggers": AssistantTriggersTable
