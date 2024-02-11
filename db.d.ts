@@ -108,6 +108,22 @@ export interface OrgCustomersTable {
   created_at?: string | Date
   updated_at?: string | Date
 }
+
+export interface AssistantListTable {
+  id: string
+  org_id: OrgListTable["id"]
+  name: string
+  description: string
+  picture: string
+  behaviour: "formal" | "casual" | "enthusiastic"
+  chatbot: {
+    initial_message: string
+    quick_questions: Array<string>
+  }
+  created_at?: string | Date
+  updated_at?: string | Date
+}
+
 export interface AssistantKnowledgeBaseTable<
   Type extends KnowledgeBaseType = KnowledgeBaseType
 > {
