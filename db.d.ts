@@ -116,9 +116,14 @@ export interface AssistantListTable {
   description: string
   picture: string
   behaviour: "formal" | "casual" | "enthusiastic"
-  chatbot: {
+  webchat: {
     initial_message: string
-    quick_questions: Array<string>
+    quick_actions: Array<string>
+    icon: string
+    theme: {
+      primary_color: string
+      css: string
+    }
   }
   created_at?: string | Date
   updated_at?: string | Date
