@@ -121,7 +121,7 @@ export interface AssistantListTable {
     quick_actions: Array<string>
     icon: string
     theme: {
-      primary_color: string
+      colors: { primary: string }
       css: string
     }
   }
