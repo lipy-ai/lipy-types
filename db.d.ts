@@ -113,16 +113,15 @@ export interface AssistantListTable {
   id: string
   org_id: OrgListTable["id"]
   name: string
-  description: string
-  picture: string
+  description?: string
+  picture?: string
   behaviour: "formal" | "casual" | "enthusiastic"
   webchat: {
-    initial_message: string
+    initial_message?: string
     quick_actions: Array<string>
-    icon: string
+    icon?: string
     theme: {
-      colors: { primary: string }
-      css: string
+      colors?: { primary: string }
     }
   }
   created_at?: string | Date
