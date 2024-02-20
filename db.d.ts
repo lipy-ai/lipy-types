@@ -16,7 +16,6 @@ export interface UserListTable {
   name: string
   email: string
   phone_number?: string
-  country?: string
   picture?: string
   address?: {
     city: string
