@@ -28,7 +28,7 @@ export interface UserListTable {
   notifications?: {
     messages: "all" | "direct" | "none"
     communication_emails: boolean
-    marketing_email: boolean
+    marketing_emails: boolean
   }
   created_at?: string | Date
   updated_at?: string | Date
