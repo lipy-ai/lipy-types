@@ -18,6 +18,14 @@ export interface UserListTable {
   phone_number?: string
   country?: string
   picture?: string
+  address?: {
+    city: string
+    country: string
+    line1?: string
+    line2?: string
+    postal_code?: string
+    state?: string
+  }
   notifications?: {
     messages: "all" | "direct" | "none"
     communication_emails: boolean
